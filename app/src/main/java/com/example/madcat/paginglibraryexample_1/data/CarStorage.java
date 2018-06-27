@@ -1,5 +1,7 @@
 package com.example.madcat.paginglibraryexample_1.data;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,12 +26,12 @@ public class CarStorage {
         this.cars.add(new Car(9, "Audi", "TT"));
         this.cars.add(new Car(10, "Audi", "R8 LMP Edition"));
         this.cars.add(new Car(12, "Audi", "100 Avant"));
-        this.cars.add(new Car(13, "BMW", "100 X1"));
-        this.cars.add(new Car(14, "BMW", "100 X2"));
-        this.cars.add(new Car(15, "BMW", "100 X3"));
-        this.cars.add(new Car(16, "BMW", "100 X4"));
-        this.cars.add(new Car(17, "BMW", "100 X5"));
-        this.cars.add(new Car(18, "BMW", "100 X6"));
+        this.cars.add(new Car(13, "BMW", "X1"));
+        this.cars.add(new Car(14, "BMW", "X2"));
+        this.cars.add(new Car(15, "BMW", "X3"));
+        this.cars.add(new Car(16, "BMW", "X4"));
+        this.cars.add(new Car(17, "BMW", "X5"));
+        this.cars.add(new Car(18, "BMW", "X6"));
         this.cars.add(new Car(19, "BMW", "M4"));
         this.cars.add(new Car(20, "BMW", "M4 Cabrio"));
         this.cars.add(new Car(21, "BMW", "M4 Competition"));
@@ -112,13 +114,38 @@ public class CarStorage {
         this.cars.add(new Car(98, "TOYOTA", "CELICA"));
         this.cars.add(new Car(99, "TOYOTA", "COROLLA"));
         this.cars.add(new Car(99, "TOYOTA", "RAV4"));
+        this.cars.add(new Car(100, "УАЗ", "469"));
     }
 
     public List<Car> getData(int startPosition, int positionCountToLoad){
+        if(startPosition > this.cars.size() - 1)
+            return new ArrayList<Car>();
+
         if(startPosition + positionCountToLoad > this.cars.size() -1)
             return this.cars.subList(this.cars.size() - positionCountToLoad - 1, this.cars.size() - 1);
 
         return this.cars.subList(startPosition, startPosition + positionCountToLoad);
+    }
+
+    public CarData getInitialData(int startPosition, int positionCountToLoad){
+        CarData carData = new CarData();
+
+        if(this.cars.size() == 0){
+            carData.setData(new ArrayList<Car>());
+            carData.setPosition(0);
+
+            return carData;
+        }
+
+        if(startPosition + positionCountToLoad > this.cars.size() -1) {
+            carData.setPosition(this.cars.size() - positionCountToLoad - 1);
+            carData.setData(this.cars.subList(this.cars.size() - positionCountToLoad - 1, this.cars.size() - 1));
+        }else {
+            carData.setPosition(startPosition);
+            carData.setData(this.cars.subList(startPosition, startPosition + positionCountToLoad));
+        }
+
+        return carData;
     }
 
     public int getCount(){
