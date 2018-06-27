@@ -34,15 +34,14 @@ public class MainActivity extends AppCompatActivity {
 
         CarFactory carFactory = new CarFactory(carStorage);
 
-
-
         PagedList.Config config = new PagedList.Config.Builder()
-                .setEnablePlaceholders(false)
-                .setPageSize(10)
+                .setEnablePlaceholders(true)
+                .setPageSize(5)
                 .build();
 
         LiveData<PagedList<Car>> pagedListLiveData = new LivePagedListBuilder<>(carFactory, config)
                 .setFetchExecutor(Executors.newSingleThreadExecutor())
+                .setInitialLoadKey(40)
                 .build();
 
         final CarsAdapter carsAdapter = new CarsAdapter(new CarDiffUtilCallback());

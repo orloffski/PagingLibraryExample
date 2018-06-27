@@ -5,6 +5,7 @@ import java.util.List;
 public class CarData {
     private int position;
     private List<Car> data;
+    private int count;
 
     public int getPosition() {
         return position;
@@ -20,5 +21,13 @@ public class CarData {
 
     public void setData(List<Car> data) {
         this.data = data;
+    }
+
+    public int getCount() {
+        return count;
+    }
+
+    public void setCount(int count) {
+        this.count = count;
     }
 }

@@ -16,7 +16,12 @@ public class SimplePositionalDataSource extends PositionalDataSource<Car> {
     @Override
     public void loadInitial(@NonNull LoadInitialParams params, @NonNull LoadInitialCallback<Car> callback) {
         CarData result = carStorage.getInitialData(params.requestedStartPosition, params.requestedLoadSize);
-        callback.onResult(result.getData(), result.getPosition());
+
+        if (params.placeholdersEnabled) {
+            callback.onResult(result.getData(), result.getPosition(), result.getCount());
+        } else {
+            callback.onResult(result.getData(), result.getPosition());
+        }
     }
 
     @Override

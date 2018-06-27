@@ -1,7 +1,5 @@
 package com.example.madcat.paginglibraryexample_1.data;
 
-import android.util.Log;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -129,6 +127,8 @@ public class CarStorage {
 
     public CarData getInitialData(int startPosition, int positionCountToLoad){
         CarData carData = new CarData();
+
+        carData.setCount(this.cars.size());
 
         if(this.cars.size() == 0){
             carData.setData(new ArrayList<Car>());

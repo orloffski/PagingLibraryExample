@@ -20,8 +20,13 @@ public class CarViewHolder extends RecyclerView.ViewHolder {
     }
 
     public void bindTo(Car car){
-        carMark.setText(car.getMark());
-        carModel.setText(car.getModel());
+        if(car == null){
+            carMark.setText(R.string.wait);
+            carModel.setText(R.string.wait);
+        }else {
+            carMark.setText(car.getMark());
+            carModel.setText(car.getModel());
+        }
     }
 
     public void clear(){
