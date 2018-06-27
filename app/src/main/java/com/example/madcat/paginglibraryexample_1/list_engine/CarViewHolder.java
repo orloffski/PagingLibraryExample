@@ -1,8 +1,11 @@
-package com.example.madcat.paginglibraryexample_1;
+package com.example.madcat.paginglibraryexample_1.list_engine;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
+
+import com.example.madcat.paginglibraryexample_1.R;
+import com.example.madcat.paginglibraryexample_1.data.Car;
 
 public class CarViewHolder extends RecyclerView.ViewHolder {
 
@@ -16,8 +19,14 @@ public class CarViewHolder extends RecyclerView.ViewHolder {
         carModel = itemView.findViewById(R.id.car_model);
     }
 
-    public void bind(Car car){
+    public void bindTo(Car car){
         carMark.setText(car.getMark());
         carModel.setText(car.getModel());
+    }
+
+    public void clear(){
+        itemView.invalidate();
+        carMark.invalidate();
+        carModel.invalidate();
     }
 }

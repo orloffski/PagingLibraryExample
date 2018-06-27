@@ -1,6 +1,4 @@
-package com.example.madcat.paginglibraryexample_1;
-
-import java.util.Objects;
+package com.example.madcat.paginglibraryexample_1.data;
 
 public class Car {
     private int id;
@@ -25,16 +23,8 @@ public class Car {
         return mark;
     }
 
-    public void setMark(String mark) {
-        this.mark = mark;
-    }
-
     public String getModel() {
         return model;
-    }
-
-    public void setModel(String model) {
-        this.model = model;
     }
 
     @Override
